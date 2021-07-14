@@ -27,6 +27,8 @@ function MockRequest (id, props) {
   this.headersObject = props.headers
   this.responseHeaders = props.response.headers || {}
   this.setResponseData(props.response.body)
+  this.responseHandler = props.response.handler
+  this.statusFunction = typeof props.response.status === 'function'
   this.responseStatus = props.response.status || 200
 
   this.calls = []
@@ -53,10 +55,21 @@ MockRequest.prototype = {
    * @return {Response}
    */
   call (request) {
+    const assertObject = this.assertObject()
+
+    if (this.responseHandler) {
+      this.setResponseData(this.responseHandler(request, assertObject))
+    }
+
+    const status = this.statusFunction
+      ? this.responseStatus(request, assertObject)
+      : this.responseStatus
+
     this.calls.push(request)
+
     return new Response(
       request,
-      this.responseStatus,
+      status,
       this.responseData,
       this.responseHeaders
     )

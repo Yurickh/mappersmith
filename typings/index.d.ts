@@ -110,6 +110,7 @@ declare module 'mappersmith' {
     readonly host?: string
     readonly ignoreGlobalMiddleware?: boolean
     readonly middleware?: Middleware[]
+    readonly gatewayConfigs?: Partial<GatewayConfiguration>
     // @alias middleware
     readonly middlewares?: Middleware[]
     readonly resources: ResourcesType
@@ -180,6 +181,8 @@ declare module 'mappersmith' {
     HTTP: HTTPGatewayConfiguration
     Mock: object
     XHR: Partial<XhrGateway>
+    enableHTTP408OnTimeouts?: boolean
+    emulateHTTP?: boolean
   }
 
   export interface Configuration {

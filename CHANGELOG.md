@@ -1,5 +1,22 @@
 # Changelog
 
+## 2.34.0
+
+  - Add json-encode middleware export `CONTENT_TYPE_JSON` to type definition #203
+  - Only accept host overrides if `allowResourceHostOverride=true` #204
+
+## 2.33.3
+
+  - Fix `GatewayConfiguration` typings
+
+## 2.33.2
+
+  - Add `enableHTTP408OnTimeouts` to `HTTPGatewayConfiguration` typings
+
+## 2.33.1
+
+  - Use latest request in response mock #191
+
 ## 2.33.0
 
   - Add support for (Typescript) boolean as parameters #185
